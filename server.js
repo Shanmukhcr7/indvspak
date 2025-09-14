@@ -11,6 +11,7 @@ const wss = new WebSocket.Server({ server });
 app.use(express.static("public"));
 
 // Proxy TataPlay links to bypass CORS
+// NOTE: This target URL may expire or be blocked. If the video fails, this is the first thing to check.
 app.use(
     "/stream",
     createProxyMiddleware({
