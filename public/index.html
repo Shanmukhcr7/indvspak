@@ -169,7 +169,10 @@
         <div class="video-player">
             <video id="video" controls autoplay class="w-full h-auto max-w-full rounded-xl border-4 border-green-400 shadow-xl"></video>
             <div class="flex justify-center gap-2 mt-4">
-                <button class="btn-quality" onclick="changeQuality('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8')">Play Live Stream</button>
+                <button class="btn-quality" onclick="changeQuality('master_664.m3u8')">360p</button>
+                <button class="btn-quality" onclick="changeQuality('master_900.m3u8')">480p</button>
+                <button class="btn-quality" onclick="changeQuality('master_2000.m3u8')">720p</button>
+                <button class="btn-quality" onclick="changeQuality('master_3500.m3u8')">1080p</button>
             </div>
         </div>
 
@@ -300,11 +303,11 @@
             }
         };
 
-        // --- Video Player (Updated to use a more reliable public stream) ---
+        // --- Video Player (Updated to use server proxy) ---
         const video = document.getElementById("video");
         let hls;
-        
-        const defaultStream = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+
+        const defaultStream = `/stream/master_2000.m3u8`;
 
         function playStream(source) {
             if (Hls.isSupported()) {
@@ -319,7 +322,7 @@
         playStream(defaultStream);
 
         window.changeQuality = function(source) {
-            playStream(source);
+            playStream(`/stream/${source}`);
         }
 
         // --- Initial Authentication & State Management ---
