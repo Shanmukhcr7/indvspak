@@ -1,14 +1,17 @@
 {
-"name": "live-stream-chat-app",
+"name": "live-stream-chat",
 "version": "1.0.0",
-"description": "A live streaming application with chat functionality, built with Node.js, Express, WebSockets, and Firebase.",
+"description": "A live streaming and chat application.",
 "main": "server.js",
 "scripts": {
 "start": "node server.js"
 },
 "dependencies": {
-"express": "^4.19.2",
-"http-proxy-middleware": "^3.0.0",
-"ws": "^8.17.1"
-}
+"express": "^4.18.2",
+"http-proxy-middleware": "^2.0.6",
+"ws": "^8.16.0"
+},
+"keywords": [],
+"author": "",
+"license": "ISC"
 }
