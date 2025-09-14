@@ -169,7 +169,9 @@
         <div class="video-player">
             <video id="video" controls autoplay class="w-full h-auto max-w-full rounded-xl border-4 border-green-400 shadow-xl"></video>
             <div class="flex justify-center gap-2 mt-4">
-                <button class="btn-quality" onclick="changeQuality('')">720p</button>
+                <button class="btn-quality" onclick="changeQuality('https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8')">480p</button>
+                <button class="btn-quality" onclick="changeQuality('https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8')">720p</button>
+                <button class="btn-quality" onclick="changeQuality('https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8')">1080p</button>
             </div>
         </div>
 
@@ -303,18 +305,20 @@
         // --- Video Player (Updated to use server proxy) ---
         const video = document.getElementById("video");
         let hls;
+        
+        const defaultStream = 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8';
 
         function playStream(source) {
             if (Hls.isSupported()) {
                 if (hls) hls.destroy();
                 hls = new Hls();
-                hls.loadSource(`/stream`);
+                hls.loadSource(source);
                 hls.attachMedia(video);
             } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-                video.src = `/stream`;
+                video.src = source;
             }
         }
-        playStream("");
+        playStream(defaultStream);
 
         window.changeQuality = function(source) {
             playStream(source);
