@@ -10,15 +10,14 @@ const wss = new WebSocket.Server({ server });
 // Serve static frontend (index.html)
 app.use(express.static("public"));
 
-// Proxy TataPlay links to bypass CORS
-// NOTE: This target URL may expire or be blocked. If the video fails, this is the first thing to check.
+// Proxy live stream to bypass CORS
 app.use(
     "/stream",
     createProxyMiddleware({
-        target: "https://tataplay.slivcdn.com",
+        target: "http://demo.unified-streaming.com/k8s/live/test/sintel/master.m3u8",
         changeOrigin: true,
         pathRewrite: {
-            "^/stream": "/hls/live/2020591/TEN3HD", // rewrite proxy path
+            "^/stream": "", // Remove the /stream prefix
         },
     })
 );
